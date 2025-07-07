@@ -1,0 +1,165 @@
+.dashboard-container {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 16px;
+  font-family: sans-serif;
+}
+
+/* Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-img {
+  width: 20px;
+  height: 20px;
+}
+
+.dashboard-title {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.signout-link {
+  color: #2563eb;
+  background: none;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Welcome Box */
+.welcome-box {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+}
+
+.welcome-title {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.welcome-email {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Create Note Button */
+.create-note-btn {
+  width: 100%;
+  background-color: #2563eb;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+/* Notes Section */
+.notes-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.notes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.note-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #eee;
+  padding: 16px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  transition: box-shadow 0.2s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.note-item:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+}
+
+.note-title {
+  color: #555;
+  font-weight: 600;
+  /* margin-bottom: 4px; */
+}
+
+.note-content {
+  color: #222;
+  font-size: 15px;
+  margin-top: 6px;
+  white-space: pre-wrap;
+}
+
+/* Delete Button */
+.note-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  pointer-events: none;
+}
+
+/* Note creation form */
+.note-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.note-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.note-textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.add-note-btn {
+  background-color: #2563eb;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
