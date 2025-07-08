@@ -2,6 +2,8 @@ import { generateOtp, sendOtpEmail } from "../utils/otpService";
 import { Request, Response, RequestHandler } from "express"; // Added RequestHandler
 import User from "../models/User"; // Assuming User is a Mongoose model
 import jwt  from "jsonwebtoken";
+import { OAuth2Client } from 'google-auth-library';
+
 
 export const signup: RequestHandler = async (req, res) => { // Explicitly typed as RequestHandler
     const { name, dob, email } = req.body;
@@ -146,6 +148,29 @@ export const getCurrentUser: RequestHandler = async (req, res) => {
     res.status(200).json({ name: user.name, email: user.email });
   } catch (error) {
     console.error('Error fetching user:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
+export const googleLogin: RequestHandler = async (req, res) => {
+  try{
+    const { token } = req.body;
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+    const payload = ticket.getPayload();
+    const email = payload?.email;
+
+    let user = await User.findOne({ email });
+    if (!user) user = await User.create({ email, name: payload?.name });
+
+    const jwtToken = jwt.sign({ _id: user._id }, process.env.JWT_SECRET!);
+    res.json({ token: jwtToken, user });
+  } catch (error) {
+    console.error('Error Logging In by google', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 };

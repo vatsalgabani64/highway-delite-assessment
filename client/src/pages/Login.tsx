@@ -5,6 +5,7 @@ import logoImage from '../images/logo.png';
 import backgroundImage from '../images/background.png';
 import './Login.css';
 import eyeOffSvg from '../images/eye-off.svg';
+import GoogleLoginButton from '../components/GoogleLoginButton.tsx';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -105,9 +106,9 @@ export default function Login() {
             {step === 'email' ? 'Get OTP' : 'Sign in'}
           </button>
 
-
+          <GoogleLoginButton />
           {error && <p className="error-text">{error}</p>}
-
+          
           <p className="signin-footer">
             Need an account? <a href="/">Create one</a>
           </p>

@@ -4,6 +4,7 @@ import api from '../api.ts';
 import logoImage from '../images/logo.png';
 import backgroundImage from '../images/background.png';
 import './Signup.css';
+import GoogleLoginButton from '../components/GoogleLoginButton.tsx';
 
 export default function Signup() {
   const [form, setForm] = useState({ name: '', dob: '', email: '', otp: '' });
@@ -114,6 +115,8 @@ export default function Signup() {
           <button className="signup-button" onClick={handleClick}>
             {step === 'email' ? 'Get OTP' : 'Sign up'}
           </button>
+
+          <GoogleLoginButton />
 
           {error && <p style={{ color: 'red', fontSize: '14px' }}>{error}</p>}
 
