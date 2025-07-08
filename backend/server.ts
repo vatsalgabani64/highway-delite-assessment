@@ -5,14 +5,33 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 const app = express();
-app.use(cors());
+
+const allowedOrigins = ['http://localhost:3000'];
+
+if (process.env.FRONTEND_URL) {
+  allowedOrigins.push(process.env.FRONTEND_URL);
+}
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.warn('Blocked by CORS:', origin);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+}));
+
+
 app.use(express.json());
 
 import authRoutes from './routes/authRoutes';
 import noteRoutes from './routes/noteRoutes';
 
-app.use('/api/auth', authRoutes);
-app.use('/api/notes', noteRoutes);
+app.use('/auth', authRoutes);
+app.use('/notes', noteRoutes);
 
 const mongoURI = process.env.MONGODB_URI!;
 mongoose.connect(mongoURI).then(() => {
